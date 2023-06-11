@@ -25,7 +25,7 @@ const cardsRender = (arr) => {
     fragment.appendChild(title)
     fragment.appendChild(list);
     list.classList.add('users-list');
-    const markup = arr.map(user => `<li class="user-item"><span class="user-id">#${user.id}</span><span class="user-name">${user.name}</span><a href='../pages/user-details.html' class="user-link" id="${user.id}">Go to details...</a></li>`).join('');
+    const markup = arr.map(user => `<li class="user-item"><span class="user-id">#${user.id}</span><span class="user-name">${user.name}</span><a href='./user-details.html' class="user-link" id="${user.id}">Go to details...</a></li>`).join('');
     list.insertAdjacentHTML('beforeend', markup);
     box.appendChild(fragment)
 }
