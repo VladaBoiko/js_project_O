@@ -1,9 +1,9 @@
 // В index.html
 // 1 отримати масив об'єктів з endpoint`а https://jsonplaceholder.typicode.com/users
-
+// const spinner = document.querySelector('.spinner');
 const API = () => {
     try {
-        return users = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json());
+        return fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json());
 
     } catch (error) {
         console.error(error)
@@ -11,8 +11,10 @@ const API = () => {
 
 }
 const start = async () => {
+    // spinner.style.display='flex';
     users = await API();
     cardsRender(users);
+    // spinner.style.display='none';
     listen();
 }
 const cardsRender = (arr) => {

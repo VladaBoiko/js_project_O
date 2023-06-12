@@ -1,6 +1,8 @@
 let params = new URLSearchParams(document.location.search);
 let id = params.get('user');
 const box = document.querySelector('.container');
+// const spinner = document.querySelector('.spinner');
+
 if (!id) {
     id = window.localStorage.getItem('user_id')
     params.set('user', `${id}`)
@@ -24,8 +26,10 @@ const userPostsAPI = () => {
     }
 }
 const start = async () => {
+    // spinner.style.display='flex';
     const user = await currentUserAPI();
     infoRender(user);
+    // spinner.style.display='none';
     getPosts(user.username);
 
 }
@@ -90,6 +94,10 @@ const postTitles = async () => {
     const markup = posts.map(post => `<li class="post-item"><span class="post-id">#${post.id}</span> ${post.title ?? 'no information'}<a href="post-details.html" class="post-details-link" id=${post.id}>Go to post...</a></li>`).join('');
     postList.insertAdjacentHTML('beforeend', markup);
     section.insertAdjacentElement('afterend', postList);
+    window.scrollTo({
+        top: 1000,
+        behavior: "smooth",
+    });
     postListening();
 }
 const postListening = () => {

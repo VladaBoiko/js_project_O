@@ -7,6 +7,8 @@ let params = new URLSearchParams(document.location.search);
 let post_id = params.get('post_id');
 let author=params.get('author')
 const box = document.querySelector('.container');
+// const spinner = document.querySelector('.spinner');
+
 if (!author) {
     author = window.localStorage.getItem('author')
     params.set('author', `${author}`)
@@ -35,15 +37,18 @@ const commentsAPI = () => {
   }
 }
 const start = async () => {
+    // spinner.style.display='flex';
     const post = await postInfoAPI();
     const comments = await commentsAPI()
     renderDetails(post, comments);
+    // spinner.style.display='none';
 }
 const renderDetails=(objPost, comments)=>{
     const markup=`<section class="post">
 <div class="post-box"><h1 class="post-title"><span class="title-accent">#${objPost.id} ${objPost.title}</span></h1>
         <h2 class="author"><span class="accent">author:</span> ${author}</h2>
         <p class="post-text"><span class="accent">Content:</span>${objPost.body}</p></div>
+         <h2 class="add-title">Comments:</h2>
         <ul class="comments-list"></ul></section>`;
     box.insertAdjacentHTML('beforeend', markup);
     const commentBox=document.querySelector('.comments-list');
